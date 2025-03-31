@@ -423,14 +423,36 @@ public class ARTemplateMenuManager : MonoBehaviour
         }
     }
 
+    // void DeleteFocusedObject()
+    // {
+    //     var currentFocusedObject = m_InteractionGroup.focusInteractable;
+    //     if (currentFocusedObject != null)
+    //     {
+    //         Destroy(currentFocusedObject.transform.gameObject);
+    //     }
+    // }
+
     void DeleteFocusedObject()
     {
         var currentFocusedObject = m_InteractionGroup.focusInteractable;
         if (currentFocusedObject != null)
         {
-            Destroy(currentFocusedObject.transform.gameObject);
+            GameObject obj = currentFocusedObject.transform.gameObject;
+
+            // If it's a floor, check if it has placed objects
+            if (obj.CompareTag("Floor"))
+            {
+                FloorController controller = obj.GetComponent<FloorController>();
+                if (controller != null && controller.ContainsObject())
+                {
+                    return; // Cancel deletion
+                }
+            }
+
+            Destroy(obj);
         }
     }
+
 
     void InitializeDebugMenuOffsets()
     {

@@ -158,6 +158,49 @@ public class GoalManager : MonoBehaviour
         set => m_CreateButton = value;
     }
 
+    [Tooltip("The Save Button to enable once the greeting prompt is dismissed.")]
+    [SerializeField]
+    GameObject m_SaveButton;
+
+    public GameObject saveButton
+    {
+        get => m_SaveButton;
+        set => m_SaveButton = value;
+    }
+
+    [Tooltip("The Undo Button to enable once the greeting prompt is dismissed.")]
+    [SerializeField]
+    GameObject m_UndoButton;
+
+    public GameObject undoButton
+    {
+        get => m_UndoButton;
+        set => m_UndoButton = value;
+    }
+
+    [Tooltip("The Redo Button to enable once the greeting prompt is dismissed.")]
+    [SerializeField]
+    GameObject m_RedoButton;
+
+    public GameObject redoButton
+    {
+        get => m_RedoButton;
+        set => m_RedoButton = value;
+    }
+
+    [Tooltip("The requirements to enable once the greeting prompt is dismissed.")]
+    [SerializeField]
+    GameObject m_Requirements;
+
+    /// <summary>
+    /// The Create Button to enable once the greeting prompt is dismissed.
+    /// </summary>
+    public GameObject Requirements
+    {
+        get => m_Requirements;
+        set => m_Requirements = value;
+    }
+
     [Tooltip("The AR Template Menu Manager object to enable once the greeting prompt is dismissed.")]
     [SerializeField]
     ARTemplateMenuManager m_MenuManager;
@@ -307,6 +350,10 @@ public class GoalManager : MonoBehaviour
         m_GreetingPrompt.SetActive(false);
         m_OptionsButton.SetActive(true);
         m_CreateButton.SetActive(true);
+        m_Requirements.SetActive(true);
+        m_SaveButton.SetActive(true);
+        m_UndoButton.SetActive(true);
+        m_RedoButton.SetActive(true);
         m_MenuManager.enabled = true;
 
         for (int i = startingStep; i < m_StepList.Count; i++)
